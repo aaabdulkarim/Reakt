@@ -7,7 +7,7 @@ with open("Backend/schema.sql") as f:
 cursor = conn.cursor()
 
 def create_account(username, password):
-    cursor.execute(f"INSERT INTO users (username, password, avgscore, highscore) VALUES ( {username}, {password}, 0, 0)")
+    cursor.execute(f"INSERT INTO users (username, password) VALUES ( {username}, {password})")
 
 
 def add_friendship(id1, id2):
@@ -15,31 +15,31 @@ def add_friendship(id1, id2):
 
 
 def add_scores(id, score):
+
+    # score zu scores table adden
+    cursor.execute(f"INSERT INTO scores (id, score) VALUES({id}, {score})")
+
     cursor.execute(f"SELECT highscore FROM users WHERE id = {id}")
     highscore = cursor.fetchall()[0][0]
     
-    if(score < highscore):
-        cursor.execute(f"INSERT INTO users (highscore) VALUES ({highscore})")
 
+    if(highscore == None or score < highscore):
+        cursor.execute(f"UPDATE users SET highscore = {score} WHERE id = {id}")
+        
     # Average score berechnen
-    score_list = cursor.execute(f"SELECT score FROM scores WHERE id = {id}")
-    for i in score_list:
-        print(i)
+    cursor.execute(f"SELECT score FROM scores WHERE id = {id}")
+    score_list = [x[0] for x in cursor.fetchall()]
+    print(score_list)
 
-
-    cursor.execute(f"INSERT INTO scores (id, score) VALUES ({id}, {score})")
+    # Summe der Liste / Länge der Liste ergibt den Durchschnitt 
+    avg_score = sum(score_list) / len(score_list)
+    cursor.execute(f"UPDATE users SET avgscore = {avg_score} WHERE id = {id}")
     
 
-create_account("'Edlinger'", "'Genie'")
-create_account("'Raphi'", "'Teufel'")
-
-add_friendship(1, 2)
-add_scores(1, -10)
 
 # Test
-execution = "SELECT * FROM users WHERE id = " + str(1)
+execution = "SELECT * FROM users"
 cursor.execute(execution)
-print(cursor.fetchall())
 
 conn.close()
 
