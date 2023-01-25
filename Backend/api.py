@@ -24,7 +24,7 @@ def setscore(id):
 # create user/check if user exist
 @app.route("/users/<string:username>:<string:password>", methods=["GET"])
 def checkaccount(username, password):
-    return sql_reader.check_account(username, password)
+    return str(sql_reader.check_account(username, password))
 
 @app.route("/users/<string:username>:<string:password>", methods=["POST"])
 def createaccount(username, password):

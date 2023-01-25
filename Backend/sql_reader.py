@@ -36,7 +36,7 @@ def add_scores(id, score):
 
 def get_friendships(id):
     cursor.execute(f"SELECT friend2_id FROM friends WHERE friend1_id = {id}")
-    return cursor.fetchall()[0]
+    return cursor.fetchall()
 
 def get_scores(id):
     cursor.execute(f"SELECT score FROM scores WHERE id = {id} LIMIT 10")
@@ -45,14 +45,19 @@ def get_scores(id):
 def check_account(username, password):
     cursor.execute(f"SELECT username, password FROM users WHERE username = {username} AND password = {password}")
 
+    et = cursor.fetchall()
+    print(et)
     # Wenn die Query ein erfolgreiches Ergebnis liefert ist das Array nicht leer(len != 0) sonst ist len = 0
-    return len(cursor.fetchall()) >= 0
+    return len(et) > 0
 
 create_account("'Edlinger'", "'Iwas'")
 create_account("'Andreder'", "'Hallo'")
-create_account("'Raphi'", "'Genius'")
-create_account("'Max'", "'ROmA'")
+create_account("'Raphi'", "'Test'")
+create_account("'Max'", "'ra'")
 
+add_friendship(2, 3)
+add_friendship(2, 1)
+add_friendship(2, 4)
 
 add_scores(1, 100)
 add_scores(1, 200)

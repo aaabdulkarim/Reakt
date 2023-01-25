@@ -36,6 +36,8 @@ function game(anzahl) {
                 anzahl = 0;
                 // make api call
                 
+
+                performances = []
             }
 
             else if(neuesSpiel){
@@ -46,6 +48,7 @@ function game(anzahl) {
                 $("#angabe1").text("Für nächsten Versuch klicken");
                 // Timing wird zum Array zum späteren Berechnen des Durchschnitts berechnen
                 performances.push(timing)
+
 
                 neuesSpiel = false;
 
@@ -84,10 +87,18 @@ function load(anzahl) {
     $("#game").addClass("uk-text-center");
     started = true;
 
+    // Muss versteckt werden da es nach einem Fehlschlag weitergeht mit vorherigen anzahl variable
+    $("#restart").hide();
+
     $("#angabe").text("Sobald sich die Farbe auf blau ändert, klicken");
     $("#angabe1").text("");
 
     console.log($("#game").hasClass("uk-tile-secondary"))
+
+    let timeout = setTimeout(function() {
+        game(anzahl)
+    }, getRandomInt(1600, 6000))
+
     $(document).ready(function(){
 
         $("#game").click(function(){
@@ -95,14 +106,23 @@ function load(anzahl) {
             if($("#game").hasClass("uk-tile-secondary")){
                 $("#game").addClass("lose-tile");
                 $("#game").removeClass("uk-tile-secondary");
+                $("#angabe").text("Erst Klicken nachdem die Farbe blau wird");
+
+                clearTimeout(timeout);
 
                 $("#game").off("click");
+                $("#restart").show();
+
+                $("#restart").click(function() {
+                    load(anzahl)
+
+                    $("#restart").off("click")
+
+                })
+            
             }
         });
     });
-    setTimeout(function() {
-        game(anzahl)
-    }, getRandomInt(1600, 6000))
 }
 
 $(document).ready(function(){
@@ -111,3 +131,4 @@ $(document).ready(function(){
     });
 });
   
+
