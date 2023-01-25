@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("Backend/reaktdata.db")
+conn = sqlite3.connect("Backend/reaktdata.db", check_same_thread=False)
 
 with open("Backend/schema.sql") as f:
     conn.executescript(f.read())
@@ -29,17 +29,51 @@ def add_scores(id, score):
     # Average score berechnen
     cursor.execute(f"SELECT score FROM scores WHERE id = {id}")
     score_list = [x[0] for x in cursor.fetchall()]
-    print(score_list)
 
     # Summe der Liste / Länge der Liste ergibt den Durchschnitt 
     avg_score = sum(score_list) / len(score_list)
     cursor.execute(f"UPDATE users SET avgscore = {avg_score} WHERE id = {id}")
-    
+
+def get_friendships(id):
+    cursor.execute(f"SELECT friend2_id FROM friends WHERE friend1_id = {id}")
+    return cursor.fetchall()[0]
+
+def get_scores(id):
+    cursor.execute(f"SELECT score FROM scores WHERE id = {id} LIMIT 10")
+    return cursor.fetchall()
+
+def check_account(username, password):
+    cursor.execute(f"SELECT username, password FROM users WHERE username = {username} AND password = {password}")
+
+    # Wenn die Query ein erfolgreiches Ergebnis liefert ist das Array nicht leer(len != 0) sonst ist len = 0
+    return len(cursor.fetchall()) >= 0
+
+create_account("'Edlinger'", "'Iwas'")
+create_account("'Andreder'", "'Hallo'")
+create_account("'Raphi'", "'Genius'")
+create_account("'Max'", "'ROmA'")
 
 
-# Test
-execution = "SELECT * FROM users"
-cursor.execute(execution)
+add_scores(1, 100)
+add_scores(1, 200)
+add_scores(1, 10)
+add_scores(1, 90)
 
-conn.close()
+
+add_scores(1, 100)
+add_scores(1, 200)
+add_scores(1, 10)
+add_scores(1, 90)
+
+
+add_scores(1, 100)
+add_scores(1, 200)
+add_scores(1, 10)
+add_scores(1, 90)
+
+
+add_scores(1, 100)
+add_scores(1, 200)
+add_scores(1, 10)
+add_scores(1, 90)
 
