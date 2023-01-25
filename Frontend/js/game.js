@@ -1,15 +1,14 @@
 let performances = [];
 let neuesSpiel = true;
+let started = false;
 
 function game(anzahl) {
 
     /* anzahl - wie oft schon das timing getestet wurde*/
 
     // Spielfeld angaben ändern
-    $("#game").removeClass();
+    $("#game").removeClass("uk-tile-secondary");
     $("#game").addClass("uk-tile-primary");
-    $("#game").addClass("uk-tile");
-    $("#game").addClass("uk-text-center");
     $("#angabe").text("Klicken!");
     $("#angabe1").text("");
 
@@ -27,9 +26,13 @@ function game(anzahl) {
                 console.log("Anzahl übertroffen")
                 neuesSpiel = false;
                 
+                
+                $("#game").removeClass("uk-tile-primary");
+                $("#game").addClass("win-tile");
+
                 $("#angabe").text(timing + " ms");
                 $("#angabe1").text("Für neues Spiel klicken");
-                
+
                 anzahl = 0;
                 // make api call
                 
@@ -44,8 +47,6 @@ function game(anzahl) {
                 // Timing wird zum Array zum späteren Berechnen des Durchschnitts berechnen
                 performances.push(timing)
 
-
-                
                 neuesSpiel = false;
 
             } 
@@ -103,8 +104,6 @@ function load(anzahl) {
         game(anzahl)
     }, getRandomInt(1600, 6000))
 }
-
-let started = false;
 
 $(document).ready(function(){
     $("#game").click(function(){
