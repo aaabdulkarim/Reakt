@@ -21,11 +21,11 @@ pip install flask_cors
 
 ## Einführung
 
-Eine Webseite, Reakt soll die Reaktionszeit der User Testen und in einer Datenbank speichern
+Eine Webseite, Reakt soll die Reaktionszeit der User Testen und in einer Datenbank speichern.
 
 ## Projektbeschreibung
 
-Reakt Webseite, welche die Reaktionszeit des Users durch rechtzeitigem Klicken testet, die Zeiten aufzeichnet und in einer Datenbank speichert. Das Projekt gilt als Übung zum Backend und benachteiligt daher das Frontend.s
+Reakt Webseite, welche die Reaktionszeit des Users durch rechtzeitigem Klicken testet, die Zeiten aufzeichnet und in einer Datenbank speichert. Das Projekt gilt als Übung zum Backend und benachteiligt daher das Frontend.
 
 Das Backend besteht aus einer REST API und einem SQL Reader der die Datenbank liest
 Das Frontend liest die Daten von der Rest-API und stellt sie übersichtlich dar.
@@ -48,7 +48,7 @@ TABLE scores speichert die Punkte (Millisekunden) die man beim Test erreicht. Da
 
 ## Das Frontend
 
-Das Frontend ist eine Website die durch API Calls Funktionalität und Datenanzeige erfüllt 
+Das Frontend ist eine Website die durch API Calls Funktionalität und Datenanzeige erfüllt. Verwendete Frameworks sind UIKit(Style) und AJAX für JQuery und API GET Calls
 
 
 ## Quellen
