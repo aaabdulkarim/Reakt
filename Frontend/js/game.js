@@ -35,7 +35,9 @@ function game(anzahl) {
 
                 anzahl = 0;
                 // make api call
-                
+                performances.forEach(element => {
+                    postrequest(element)
+                });
 
                 performances = []
             }
@@ -132,17 +134,24 @@ $(document).ready(function(){
 });
   
 
-function postrequest() {
-    $.post("http://127.0.0.1:5001/", 
-    {
-        id: 1, 
-        title: "What is AJAX", 
-        body: "AJAX stands for Asynchronous JavaScript..."
-    },
-    function(data, status) {
-        if(status === "success") {
-            console.log("Post successfully created!")
-        }
-    },
-    "json")}
+function postrequest(score) {
+    let url = 'http://127.0.0.1:5001/scores/' + localStorage.getItem("id") + ":" + score
+    console.log(url);
+    if(localStorage.getItem("name") == "" || localStorage.getItem("passwort") == "" || isNaN(localStorage.getItem("id"))){
+        alert("Um die Performances zu speichern musst du dich anmelden")
+    }
+    else{ 
+        fetch(url, {
+            method: 'post'
+        }).then((response) => {
+            return response
+        }).then((res) => {
+            if (res.status === 201) {
+                console.log("Post successfully created!")
+            }
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+}
 
