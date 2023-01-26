@@ -1,7 +1,10 @@
 from flask import Flask
-import sql_reader
+from flask_cors import CORS
 
+import sql_reader
 app = Flask(__name__)
+
+cors = CORS(app)
 
 # Add/get friends
 @app.route("/friends/<int:id>", methods=["GET"])

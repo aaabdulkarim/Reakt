@@ -132,3 +132,17 @@ $(document).ready(function(){
 });
   
 
+function postrequest() {
+    $.post("http://127.0.0.1:5001/", 
+    {
+        id: 1, 
+        title: "What is AJAX", 
+        body: "AJAX stands for Asynchronous JavaScript..."
+    },
+    function(data, status) {
+        if(status === "success") {
+            console.log("Post successfully created!")
+        }
+    },
+    "json")}
+

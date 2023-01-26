@@ -23,6 +23,9 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="../js/profil.js">
+
+    </script>
 </head>
 
 <body >
@@ -51,7 +54,7 @@
                             <a href="profil.html"><span uk-icon="icon: user"></span></a>
                             <div class="uk-navbar-dropdown">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                                    <li class="uk-active"><a href="profil.html">ANMELDEN</a></li>
+                                    <li class="uk-active"><a href="profil.html">Profil</a></li>
                                     <li><a href="profil.html#freunde"><span uk-icon="users"></span>Freunde</a></li>
                                     <li><a href="profil.html#einstellungen"><span uk-icon="settings"></span>Einstellungen</a></li>
                                     <li><a href="login.html"><span uk-icon="sign-out"></span>Abmelden</a></li>
@@ -69,37 +72,25 @@
             <form action="/login.html" method="post">
                 <fieldset class="uk-fieldset">
             
-                    <legend class="uk-legend">Legend</legend>
+                    <legend class="uk-legend">Anmelden/Registrieren</legend>
             
                     <div class="uk-margin">
-                        <input class="uk-input" type="text" placeholder="Input" aria-label="Input">
+                        <input class="uk-input" id="anmeldeinp" type="text" placeholder="Anmeldename" aria-label="Input">
                     </div>
-            
+                
+
                     <div class="uk-margin">
-                        <select class="uk-select" aria-label="Select">
-                            <option>Option 01</option>
-                            <option>Option 02</option>
-                        </select>
+                        <input class="uk-input" id="passwortinp" type="password" placeholder="Passwort" aria-label="Textarea">
                     </div>
-            
-                    <div class="uk-margin">
-                        <textarea class="uk-textarea" rows="5" placeholder="Textarea" aria-label="Textarea"></textarea>
-                    </div>
-            
-                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                        <label><input class="uk-radio" type="radio" name="radio2" checked> A</label>
-                        <label><input class="uk-radio" type="radio" name="radio2"> B</label>
-                    </div>
-            
-                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                        <label><input class="uk-checkbox" type="checkbox" checked> A</label>
-                        <label><input class="uk-checkbox" type="checkbox"> B</label>
-                    </div>
-            
-                    <div class="uk-margin">
-                        <input class="uk-range" type="range" value="2" min="0" max="10" step="0.1" aria-label="Range">
-                    </div>
-            
+
+                    <p href="" id="anmelden">
+                        Anmelden    
+                    </p>
+
+                    <p href="" id="registrieren">
+                        Registrieren    
+                    </p>
+
                 </fieldset>
             </form>
         </div>
