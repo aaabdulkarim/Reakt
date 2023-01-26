@@ -18,7 +18,7 @@ function anmelden(){
             }});
         }
         else{
-            alert("Falscher Anmeldename oder Passwort")
+            alert("Falsche Anmeldedaten")
         }
 
         
@@ -68,8 +68,10 @@ $(document).ready(function(){
     
     $.ajax({url: "http://127.0.0.1:5001/friends/" + localStorage.getItem("id"), success: function(result){
         console.log(result);
-        $.ajax({url: "http://127.0.0.1:5001/users/id/" + localStorage.getItem("id"), success: function(userdata){
+        $.ajax({url: "http://127.0.0.1:5001/users/id/" + result[0][0], success: function(userdata){
             console.log(userdata);
+            let element = `<p> ${userdata[0][0]} Mit avgscore: ${userdata[0][1]} und highscore: ${userdata[0][2]} </p>`
+            $("#freunde").append(element)
         }});
     }});
     

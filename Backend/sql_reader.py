@@ -1,14 +1,19 @@
-import sqlite3
+import sqlite3, threading
 conn = sqlite3.connect("Backend/reaktdata.db", check_same_thread=False)
 
 with open("Backend/schema.sql") as f:
     conn.executescript(f.read())
 
 cursor = conn.cursor()
+lock = threading.Lock()
 
 def create_account(username, password):
-    cursor.execute(f"INSERT INTO users (username, password) VALUES ( {username}, {password})")
+    try:
+        lock.acquire(True)
 
+        cursor.execute(f"INSERT INTO users (username, password) VALUES ( {username}, {password})")
+    finally:
+        lock.release()
 
 def add_friendship(id1, id2):
     cursor.execute(f"INSERT INTO friends (friend1_id, friend2_id) VALUES ( {id1}, {id2})")

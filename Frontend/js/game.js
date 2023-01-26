@@ -21,7 +21,7 @@ function game(anzahl) {
             const timing = Math.round(endTime - startTime);
 
 
-            if(anzahl == 3){
+            if(anzahl >= 3){
 
                 console.log("Anzahl übertroffen")
                 neuesSpiel = false;
