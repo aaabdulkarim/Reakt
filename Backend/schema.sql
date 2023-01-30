@@ -2,10 +2,9 @@
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username varchar(100) NOT NULL,
-    password varchar(100) NOT NULL,
-    avgscore int,
-    highscore int
+    password varchar(100) NOT NULL
 );
+
 
 -- Scores table
 CREATE TABLE IF NOT EXISTS scores(

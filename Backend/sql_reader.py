@@ -23,14 +23,7 @@ def add_scores(id, score):
 
     # score zu scores table adden
     cursor.execute(f"INSERT INTO scores (id, score) VALUES({id}, {score})")
-
-    cursor.execute(f"SELECT highscore FROM users WHERE id = {id}")
-    highscore = cursor.fetchall()[0][0]
     
-
-    if(highscore == None or score < highscore):
-        cursor.execute(f"UPDATE users SET highscore = {score} WHERE id = {id}")
-        
     # Average score berechnen
     cursor.execute(f"SELECT score FROM scores WHERE id = {id}")
     score_list = [x[0] for x in cursor.fetchall()]
@@ -79,33 +72,40 @@ def get_userdata(id):
 
 create_account("'Edlinger'", "'Benjamin'")
 create_account("'Andreder'", "'Eda'")
-create_account("'Raphi'", "'JSON'")
-create_account("'Max'", "'ka'")
+create_account("'Raphi'", "'Jason'")
+create_account("'Max'", "'Mizrak'")
 
 add_friendship(2, 3)
 add_friendship(2, 1)
 add_friendship(2, 4)
+add_friendship(3, 1)
 
+add_scores(1, 151)
 add_scores(1, 100)
-add_scores(1, 200)
 add_scores(1, 10)
 add_scores(1, 90)
 
-
-add_scores(1, 100)
-add_scores(1, 200)
+add_scores(1, 60)
+add_scores(1, 70)
 add_scores(1, 10)
-add_scores(1, 90)
+add_scores(1, 40)
+
+add_scores(1, 20)
+add_scores(1, 40)
+
+add_scores(2, 100)
+add_scores(2, 200)
+add_scores(2, 310)
+add_scores(2, 290)
 
 
-add_scores(1, 100)
-add_scores(1, 200)
-add_scores(1, 10)
-add_scores(1, 90)
+add_scores(2, 300)
+add_scores(2, 240)
+add_scores(2, 260)
+add_scores(2, 190)
 
 
-add_scores(1, 100)
-add_scores(1, 200)
-add_scores(1, 10)
-add_scores(1, 90)
-
+add_scores(2, 165)
+add_scores(2, 270)
+add_scores(2, 360)
+add_scores(2, 210)
