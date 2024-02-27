@@ -8,14 +8,12 @@ Datum: **26.01.2023**
 
 FLASK ist das Framework womit die API geschrieben wurde:
 
-<code>
-pip install flask
+<code>pip install flask
 </code>
 
 Damit werden CORS Errors vermieden:
 
-<code>
-pip install flask_cors
+<code>pip install flask_cors
 </code>
 
 
